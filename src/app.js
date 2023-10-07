@@ -2,7 +2,7 @@ const express = require('express');
 
 // const validateJWT = require('./auth/validateJWT');
 
-const { loginRouter, userRouter } = require('./routers');
+const { loginRouter, userRouter, categoryRouter } = require('./routers');
 
 // ...
 
@@ -17,6 +17,7 @@ app.get('/', (_request, response) => {
 
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
+app.use('/categories', categoryRouter);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
