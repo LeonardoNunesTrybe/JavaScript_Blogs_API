@@ -15,12 +15,18 @@ const createToken = (data) => {
 const extractToken = (bearerToken) => {
   const token = bearerToken.split(' ')[1];
   const extract = jwt.verify(token, secret);
-  return extract.data;
+  return extract;
 };
 
+const decodeToken = (token) => {
+  const decripted = jwt.verify(token, secret);
+  return decripted;
+};
+  
 module.exports = {
   createToken,
   extractToken,
+  decodeToken,
   /* /secret,
   jwtConfig,
   jwt,/ */

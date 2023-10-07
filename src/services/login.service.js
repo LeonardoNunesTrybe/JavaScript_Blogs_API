@@ -1,14 +1,15 @@
 const { User } = require('../models');
-const { createToken } = require('../auth/validateJWT');
+const { createToken } = require('../auth/jwt');
 
 const userLogin = async (email, password) => {
-  const user = await User.findOne({ where: { email, password } });
+  const user = await User.findOne({ where: { email } });
 
   if (!user || user.password !== password) {
     return { status: 400, message: 'Invalid fields' };
   }
-
-  const token = createToken({ email });
+  
+  const { id } = user;
+  const token = createToken({ id });
   return { status: 'OK', data: { token } };
 };
 
