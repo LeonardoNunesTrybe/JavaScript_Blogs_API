@@ -7,9 +7,10 @@ const validateAccessToken = (req, res, next) => {
     return res.status(401).json({ message: 'Token not found' });
   }
   const token = authorization.split(' ')[1];
-  console.log(token);
+  // console.log(token);
   try {
-    jwt.decodeToken(token);
+    const { id } = jwt.decodeToken(token);
+    req.userId = { id };
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Expired or invalid token' });
