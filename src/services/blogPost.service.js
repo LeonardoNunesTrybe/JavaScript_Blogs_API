@@ -30,7 +30,26 @@ const findAll = async () => {
   return { status: 'SUCCESSFUL', data: blogs };
 };
 
+const findById = async (id) => {
+  const blog = await BlogPost.findByPk(id, {
+    include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      {
+        model: Category,
+        as: 'categories',
+      },
+    ],
+  });
+
+  return { status: 'SUCCESSFUL', data: blog };
+};
+
 module.exports = {
   createBlogPost,
   findAll,
+  findById,
 };
