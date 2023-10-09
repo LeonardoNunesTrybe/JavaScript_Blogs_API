@@ -8,6 +8,13 @@ const createBlogPost = async (req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+const findAll = async (req, res) => {
+  const { status, data } = await blogPostService.findAll();
+
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
 module.exports = {
   createBlogPost,
+  findAll,
 };

@@ -12,5 +12,6 @@ router.post(
   verifyCategoryIds, 
   blogPostController.createBlogPost,
 );
+router.get('/', validateAccessToken, blogPostController.findAll);
 
 module.exports = router;
