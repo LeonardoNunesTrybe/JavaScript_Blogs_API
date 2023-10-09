@@ -31,11 +31,14 @@ const findAll = async () => {
 };
 
 const findById = async (id) => {
-  const user = await User.findByPk(id);
+  const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
 
-  if (!user) return { status: 404, data: { message: 'User does not exist' } };
+  if (!user) return { status: 'NOT_FOUND', data: { message: 'User does not exist' } };
 
-  return { status: 200, data: user };
+  return { 
+    status: 'SUCCESSFUL', 
+    data: user, 
+  };
 };
 
 module.exports = {
