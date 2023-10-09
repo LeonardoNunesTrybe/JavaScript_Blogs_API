@@ -22,9 +22,12 @@ const createUser = async ({ displayName, email, password, image }) => {
 };
 
 const findAll = async () => {
-  const users = await User.findAll();
+  const users = await User.findAll({ attributes: { exclude: ['password'] } });
 
-  return { status: 201, data: users };
+  return { 
+    status: 'SUCCESSFUL', 
+    data: users,  
+  };
 };
 
 const findById = async (id) => {

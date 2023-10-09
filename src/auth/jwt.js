@@ -19,8 +19,8 @@ const extractToken = (bearerToken) => {
 };
 
 const decodeToken = (token) => {
-  const decripted = jwt.verify(token, secret);
-  return decripted;
+  const decripted = jwt.verify(token, secret, jwtConfig);
+  return decripted;    
 };
   
 module.exports = {
